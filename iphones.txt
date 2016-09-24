@@ -1,0 +1,55 @@
+Question 1. 
+
+\begin{lstlisting}
+TAC <- unlist(iPhones["IMEI"] 
+codeTAC <- substr(TAC, 3, 8) 
+codeTAC <- replace(codeTAC, codeTAC == "161200", 1)
+codeTAC <- replace(codeTAC, codeTAC == "161300", 2)
+codeTAC <- replace(codeTAC, codeTAC == "161400", 3)
+codeTAC <- replace(codeTAC, codeTAC == "171200", 4)
+codeTAC <- replace(codeTAC, codeTAC == "171300", 5)
+codeTAC <- replace(codeTAC, codeTAC == "171400", 6)
+codeTAC <- replace(codeTAC, codeTAC == "174200", 7)
+codeTAC <- replace(codeTAC, codeTAC == "174300", 8)
+codeTAC <- replace(codeTAC, codeTAC == "174300", 9)
+codeTAC <- replace(codeTAC, codeTAC == "174400", 9)
+codeTAC <- replace(codeTAC, codeTAC == "177100", 10)
+codeTAC <- replace(codeTAC, codeTAC == "177300", 11)
+codeTAC <- replace(codeTAC, codeTAC == "177400", 12)
+codeTAC <- replace(codeTAC, codeTAC == "177500", 13)
+codeTAC <- replace(codeTAC, codeTAC == "177600", 14)
+codeTAC <- replace(codeTAC, codeTAC == "180900", 15)
+numTAC <- as.numeric(codeTAC)
+numTAC <- numTAC - 1
+numTAC <- numTAC*10^6
+SNR <- substr(unlist(iPhones["IMEI"], 9, 13))
+SNR <- as.numeric(SNR)
+NS <- TAC + SNR*10
+\end{lstlisting}
+
+Question2.
+
+Sur la période concernée, on estime le nombre d'iPhones à 14 millions
+
+Question3.
+
+\begin{lstlisting}
+semaine <- substr(unlist(iPhones["PC"], 4, 5))
+semaine //vecteur semaine
+split(NS, rep(1:8, c(33, 39, 16, 17, 14, 8, 8, 4))) // groupe des semaines
+for( i in 1:8) {
+    vec <- unlist(NS[i])
+    print(max(vec))
+}
+// On obtient donc la production cumulée par semaine. Il n'y a donc plus qu'a soustraire pour obtenir la production par semaine
+\end{lstlisting}
+
+Question4.
+
+L'hypothèse d'uniformité ne semble pas vérifiée sur toute la période. En effet, la courbe n'est pas linéaire et de ce fait, l'estimateur ne peut pas être considéré comme un bon estimateur. Cependant, sur certaines sous-périodes l'hypothèse d'uniformité semble être vérifiée.
+
+Question 5.
+
+L'estimateur n'est pas forcément mauvais malgré le fait que sur la période de 1 à théta, l'hypothèse d'uniformisation n'est pas vérifiée puisque le modèle au départ n'est pas mauvais. Cependant, des choix personnels restent à faire quant aux hypothèse de départ.
+
+
